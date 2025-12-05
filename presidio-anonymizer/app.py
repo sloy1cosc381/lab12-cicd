@@ -67,6 +67,16 @@ class Server:
             )
             return Response(anoymizer_result.to_json(), mimetype="application/json")
 
+        @self.app.route("/genz-preview", methods=["GET"])
+        def anonymizers():
+            """Return example of genz anonymizer."""
+            extext=[
+                {"example":"Call Emily at 577-988-1234"},
+                {"example output":"Call GOAT at vibe check"},
+                {"description":"Example output of the genz anonymizer."}
+            ]
+            return jsonify(extext)
+        
         @self.app.route("/deanonymize", methods=["POST"])
         def deanonymize() -> Response:
             content = request.get_json()
@@ -85,7 +95,7 @@ class Server:
             return Response(
                 deanonymized_response.to_json(), mimetype="application/json"
             )
-
+            
         @self.app.route("/anonymizers", methods=["GET"])
         def anonymizers():
             """Return a list of supported anonymizers."""
