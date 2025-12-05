@@ -63,8 +63,7 @@ class Server:
             content = request.get_json()
             if not content:
                 raise BadRequest("Invalid request json")
-            text = content.get("text", "")
-            
+
             analyzer_results = AppEntitiesConvertor.analyzer_results_from_json(
                 content.get("analyzer_results")
             )
